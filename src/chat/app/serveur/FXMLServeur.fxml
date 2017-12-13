@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: 0,100,0;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="chat.app.serveur.FXMLServeurController">
+    <stylesheets>
+        <URL value="@fxmlserveur.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #F3F3F3; -fx-border-color: #1976D2; -fx-border-width: 3; -fx-background-radius: 1em; -fx-border-radius: 1em;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefWidth="400.0">
+               <children>
+                  <AnchorPane prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: #1976D2; -fx-background-radius: 1em; -fx-border-radius: 1em;">
+                     <children>
+                        <Label layoutX="140.0" layoutY="13.0" text="ChatApp Serveur" textFill="#f3f3f3">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <FontAwesomeIconView fx:id="quitterButton" fill="#f3f3f3" glyphName="TIMES_CIRCLE" layoutX="379.0" layoutY="31.0" onMouseClicked="#quitterButtonOnMouseClicked" size="20" />
+                        <FontAwesomeIconView fx:id="minimiserButton" fill="#f3f3f3" glyphName="MINUS_CIRCLE" layoutX="357.0" layoutY="31.0" onMouseClicked="#minimiserButtonOnMouseClicked" size="20" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutY="40.0" prefHeight="10.0" prefWidth="400.0" style="-fx-background-color: #1976D2;" />
+               </children>
+            </AnchorPane>
+            <TextArea fx:id="serveurTextArea" editable="false" focusTraversable="false" layoutX="10.0" layoutY="57.0" prefHeight="283.0" prefWidth="380.0" style="-fx-border-color: #4d4d4d; -fx-border-radius: 5; -fx-background-color: #F3F3F3;" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </TextArea>
+            <JFXButton fx:id="demarrerButton" layoutX="14.0" layoutY="351.0" onAction="#demarrerButtonOnAction" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #1976d2; -fx-background-radius: 2em; -fx-border-radius: 2em;" text="Démarrer" textFill="#f3f3f3" />
+            <JFXButton fx:id="arreterButton" layoutX="150.0" layoutY="351.0" onAction="#arreterButtonOnAction" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #F3F3F3; -fx-border-color: #1976d2; -fx-background-radius: 2em; -fx-border-radius: 2em;" text="Arrêter" textFill="#1976d2" />
+            <JFXButton fx:id="reinitialiserButton" layoutX="286.0" layoutY="351.0" onAction="#reinitialiserButtonOnAction" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #F3F3F3; -fx-border-color: #1976d2; -fx-background-radius: 2em; -fx-border-radius: 2em;" text="Réinitialiser" textFill="#1976d2" />
+            <AnchorPane fx:id="chatAppAnchorPane" layoutX="10.0" layoutY="57.0" prefHeight="283.0" prefWidth="380.0" style="-fx-background-color: #F3F3F3;">
+               <children>
+                  <FontAwesomeIconView fill="#1976d2" glyphName="XING" layoutX="159.0" layoutY="169.0" size="80" />
+               </children>
+            </AnchorPane>
+         </children>
+         <padding>
+            <Insets left="-6.0" />
+         </padding>
+      </AnchorPane>
+   </children>
+</AnchorPane>
