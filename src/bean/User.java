@@ -7,11 +7,13 @@ package bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 /**
@@ -41,6 +43,8 @@ public class User implements Serializable {
     private boolean status;
     @ManyToOne
     private Pays pays;
+    @OneToMany(mappedBy = "sender")
+    private List<Conversation> conversations;
 
     public User() {
     }
@@ -168,6 +172,16 @@ public class User implements Serializable {
         this.pays = pays;
     }
 
+    public List<Conversation> getConversations() {
+        return conversations;
+    }
+
+    public void setConversations(List<Conversation> conversations) {
+        this.conversations = conversations;
+    }
+
+   
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -190,7 +204,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return userName ;
+        return userName;
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package messageServices;
 
+import bean.Conversation;
 import bean.Message;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,27 +19,25 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.TextArea;
+import service.ConversationFacade;
 
 /**
  *
  * @author abdel
  */
 class Service extends Thread {
-
+    
     private Socket socket;
     private TextArea console;
     Vector<Socket> lesSocket;
-    Date dateEnvoi;
-    SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    SimpleDateFormat SimpleTimeFormat = new SimpleDateFormat("HH:mm:ss");
-    Calendar calenrier = Calendar.getInstance();
-
+    ConversationFacade conversationFacade = new ConversationFacade();
+    
     public Service(Socket socket, Vector<Socket> lesSocket, TextArea console) {
         this.socket = socket;
         this.console = console;
         this.lesSocket = lesSocket;
     }
-
+    
     @Override
     public void run() {
         InputStream is = null;
@@ -50,6 +49,7 @@ class Service extends Thread {
                 for (int i = 0; i < lesSocket.size(); i++) {
                     System.out.println(lesSocket.elementAt(i).getPort() + "  and  " + message.getPort());
                     if (lesSocket.elementAt(i).getPort() == message.getPort()) {
+                        editConversationDate(message.getConversation());
                         ObjectOutputStream outObject = new ObjectOutputStream(lesSocket.elementAt(i).getOutputStream());
                         outObject.writeObject(message);
                     }
@@ -65,5 +65,10 @@ class Service extends Thread {
             }
         }
     }
-
+    
+    public void editConversationDate(Conversation conversation) {
+        conversation.setDateModification(new Date());
+        conversationFacade.edit(conversation);
+    }
+    
 }

@@ -63,6 +63,12 @@ public class UserFacade extends AbstractFacade<User> {
 
     }
 
+    public List<Object> findUsersObjectsContaints(String motRechercher) {
+        String requette = "Select u from User u where u.userName LIKE '%" + motRechercher + "%' OR u.email LIKE '%" + motRechercher + "%' AND u.status = 1";
+        System.out.println(requette);
+        return getEntityManager().createQuery(requette).getResultList();
+    }
+
     public User deconnecter(User user) {
         user.setStatus(false);
         user.setIpAdress(null);

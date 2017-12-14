@@ -5,6 +5,7 @@
     <class>bean.ConnectedUsers</class>
     <class>bean.Pays</class>
     <class>bean.User</class>
+    <class>bean.Conversation</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/chat_app_server__db?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

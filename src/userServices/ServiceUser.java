@@ -6,6 +6,7 @@
 package userServices;
 
 import bean.ConnectedUsers;
+import bean.Conversation;
 import bean.User;
 import bean.UserService;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
 import javax.mail.Service;
 import javafx.scene.control.TextArea;
 import service.ConnectedUsersFacade;
+import service.ConversationFacade;
 import service.PaysFacade;
 import service.UserFacade;
 
@@ -31,6 +33,7 @@ public class ServiceUser extends Thread {
     private TextArea console;
     private List<Socket> sockets;
     ConnectedUsersFacade connectedUsersFacade = new ConnectedUsersFacade();
+    ConversationFacade conversationFacade = new ConversationFacade();
     UserFacade userFacade = new UserFacade();
     PaysFacade paysFacade = new PaysFacade();
 
@@ -96,8 +99,8 @@ public class ServiceUser extends Thread {
             case "getUserObjects":
                 service.setObjetList(userFacade.getUsers());
                 break;
-            case "findAllPaysObjects":
-                service.setObjetList(paysFacade.findAllPaysObjects());
+            case "findUsersObjectsContaints":
+                service.setObjetList(userFacade.findUsersObjectsContaints((String) service.getObjet()));
                 break;
             case "modifier":
                 User user1 = (User) service.getObjet();
@@ -116,6 +119,15 @@ public class ServiceUser extends Thread {
                 break;
             case "createConnectedUser":
                 connectedUsersFacade.create((ConnectedUsers) service.getObjet());
+                break;
+            case "findOrCreateConversation":
+                service.setObjet(conversationFacade.createConversation((Conversation) service.getObjet()));
+                break;
+            case "findConversationObjects":
+                service.setObjetList(conversationFacade.getConversationsByUser((User) service.getObjet()));
+                break;
+            case "findAllPaysObjects":
+                service.setObjetList(paysFacade.findAllPaysObjects());
                 break;
             default:
                 return new UserService();
