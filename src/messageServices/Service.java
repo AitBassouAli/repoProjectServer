@@ -47,7 +47,6 @@ class Service extends Thread {
                 ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
                 Message message = (Message) inObject.readObject();
                 for (int i = 0; i < lesSocket.size(); i++) {
-                    System.out.println(lesSocket.elementAt(i).getPort() + "  and  " + message.getPort());
                     if (lesSocket.elementAt(i).getPort() == message.getPort()) {
                         editConversationDate(message.getConversation());
                         ObjectOutputStream outObject = new ObjectOutputStream(lesSocket.elementAt(i).getOutputStream());

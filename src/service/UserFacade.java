@@ -28,7 +28,6 @@ public class UserFacade extends AbstractFacade<User> {
         try {
             User user = (User) getEntityManager().createQuery("select u from User u where u.userName ='" + id + "'").getSingleResult();
             if (user != null) {
-                System.out.println(user.getUserName() + " 1 " + user.getEmail());
                 return user;
             }
         } catch (Exception e) {
@@ -40,7 +39,6 @@ public class UserFacade extends AbstractFacade<User> {
     public User findByCreteres(User user) {
         try {
             String requette = "select u from User u where u.id=" + user.getId() + " And u.userName ='" + user.getUserName() + "' And u.email ='" + user.getEmail() + "'";
-            System.out.println(requette);
             User user1 = (User) getEntityManager().createQuery(requette).getSingleResult();
             if (user1 != null) {
                 return user1;
@@ -58,7 +56,6 @@ public class UserFacade extends AbstractFacade<User> {
 
     public List<User> findConnectedUsers() {
         String requette = "Select u from User u where u.status = 1";
-        System.out.println(requette);
         return getEntityManager().createQuery(requette).getResultList();
 
     }
@@ -97,7 +94,6 @@ public class UserFacade extends AbstractFacade<User> {
         }
         newUser.setId(oldUser.getId());
         edit(newUser);
-        System.out.println("*********** changer " + newUser + "************");
         return newUser;
     }
 
@@ -107,11 +103,10 @@ public class UserFacade extends AbstractFacade<User> {
             return new Object[]{-1, null};
         } else {
             User loadedUser = find(user.getUserName());
-            if (connectedUsersFacade.findByUser(loadedUser) != null) {
-                System.out.println("deja connectee !!");
-                return new Object[]{-6, null};
-            } else if (loadedUser == null) {
+            if (loadedUser == null) {
                 return new Object[]{-2, null};
+            } else if (connectedUsersFacade.findByUser(loadedUser) != null) {
+                return new Object[]{-6, null};
             } else if (!loadedUser.getPassword().equals(HashageUtil.sha256(user.getPassword()))) {
                 if (loadedUser.getNbrCnx() < 3) {
                     System.out.println(" loadedUser.getNbrCnx() < 3 ::: " + loadedUser.getNbrCnx());
@@ -161,7 +156,6 @@ public class UserFacade extends AbstractFacade<User> {
         try {
             User user = (User) getEntityManager().createQuery("select u from User u where u.email LIKE '" + email + "'").getSingleResult();
             if (user != null) {
-                System.out.println(user.getUserName() + " 2 " + user.getEmail());
                 return user;
             }
         } catch (Exception e) {

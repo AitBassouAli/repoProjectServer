@@ -53,9 +53,7 @@ public class ServiceUser extends Thread {
             while (true) {
                 ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
                 UserService userService = (UserService) inObject.readObject();
-                System.out.println(userService);
                 for (int i = 0; i < sockets.size(); i++) {
-                    System.out.println(sockets.get(i).getPort() + "  and  " + userService.getPort());
                     if (sockets.get(i).getPort() == userService.getPort()) {
                         ObjectOutputStream outObject = new ObjectOutputStream(sockets.get(i).getOutputStream());
                         outObject.writeObject(doExecute(userService));
@@ -78,13 +76,11 @@ public class ServiceUser extends Thread {
         Object[] obj;
         switch (service.getServiceToExecute()) {
             case "seConnecter":
-                System.out.println("******** seConnecter from server ********");
                 obj = userFacade.seConnecter((User) service.getObjet());
                 service.setServiceReturn((int) obj[0]);
                 service.setObjet(obj[1]);
                 break;
             case "addUser":
-                System.out.println("******** add from server ********");
                 obj = userFacade.addUser((User) service.getObjet());
                 service.setServiceReturn((int) obj[0]);
                 service.setObjet(obj[1]);
@@ -132,7 +128,6 @@ public class ServiceUser extends Thread {
             default:
                 return new UserService();
         }
-        System.out.println("returnin from doExecute of server" + service);
         return service;
     }
 }

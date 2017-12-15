@@ -59,10 +59,11 @@ public class FXMLServeurController implements Initializable {
     }
 
     @FXML
-    private void quitterButtonOnMouseClicked(MouseEvent event) {
+    private void quitterButtonOnMouseClicked(MouseEvent event) throws InterruptedException {
         try {
-         if (!enable) {
+            if (!enable) {
                 serveur.arreter();
+                Thread.sleep(500);
                 userServeur.arreter();
             }
         } catch (IOException ex) {
@@ -82,8 +83,8 @@ public class FXMLServeurController implements Initializable {
         if (enable) {
             chatAppAnchorPane.toBack();
             serveur = new ServeurMT(serveurTextArea);
-            serveur.start();     
-            Thread.sleep(10000);
+            serveur.start();
+            Thread.sleep(500);
             userServeur = new UserServer(serveurTextArea);
             userServeur.start();
             enable = false;

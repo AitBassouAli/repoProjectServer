@@ -84,8 +84,7 @@ public class ConversationFacade extends AbstractFacade<Conversation> {
 
     public List<Object> getConversationsByUser(User user) {
         String rqt = "SELECT c FROM Conversation c WHERE c.sender.id = " + user.getId() + " OR c.reciever.id = " + user.getId() + " ORDER BY c.dateModification DESC";
-        System.out.println(rqt);
         return getEntityManager().createQuery(rqt).getResultList();
     }
-    
+
 }

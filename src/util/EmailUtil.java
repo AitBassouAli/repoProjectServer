@@ -21,8 +21,8 @@ import javax.mail.internet.MimeMessage;
  * @author HP
  */
 public class EmailUtil {
- 
-     public static boolean sendMail(String from, String password, String message, String to, String subject) throws MessagingException {
+
+    public static boolean sendMail(String from, String password, String message, String to, String subject) throws MessagingException {
         System.out.println("hanii :D");
         String host = "smtp.gmail.com";
         Properties props = System.getProperties();
@@ -40,7 +40,6 @@ public class EmailUtil {
             mimeMessage.setFrom(new InternetAddress(from));
 //            InternetAddress[] toAdress=new InternetAddress[to.length];
 //            for(int i=0;i<toAdress.length;i++){
-            System.out.println("hanii f emailUtil");
             mimeMessage.addRecipient(RecipientType.TO, new InternetAddress(to));
 //            }
             mimeMessage.setSubject(subject);
