@@ -78,11 +78,12 @@ public class FXMLServeurController implements Initializable {
     }
 
     @FXML
-    private void demarrerButtonOnAction(ActionEvent event) {
+    private void demarrerButtonOnAction(ActionEvent event) throws InterruptedException {
         if (enable) {
             chatAppAnchorPane.toBack();
             serveur = new ServeurMT(serveurTextArea);
-            serveur.start();          
+            serveur.start();     
+            Thread.sleep(10000);
             userServeur = new UserServer(serveurTextArea);
             userServeur.start();
             enable = false;

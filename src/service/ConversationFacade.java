@@ -87,5 +87,5 @@ public class ConversationFacade extends AbstractFacade<Conversation> {
         System.out.println(rqt);
         return getEntityManager().createQuery(rqt).getResultList();
     }
-
+    
 }

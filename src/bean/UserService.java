@@ -36,6 +36,7 @@ public class UserService implements Serializable {
         this.connectedUser = connectedUser;
         this.serviceToExecute = serviceToExecute;
     }
+    
     public UserService(Object user, User connectedUser, String serviceToExecute, int serviceResturn) {
         this.objet = user;
         this.connectedUser = connectedUser;
