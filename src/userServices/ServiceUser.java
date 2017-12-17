@@ -122,6 +122,9 @@ public class ServiceUser extends Thread {
             case "findConversationObjects":
                 service.setObjetList(conversationFacade.getConversationsByUser((User) service.getObjet()));
                 break;
+            case "supprimerConversation":
+                conversationFacade.remove((Conversation) service.getObjet());
+                break;
             case "findAllPaysObjects":
                 service.setObjetList(paysFacade.findAllPaysObjects());
                 break;
