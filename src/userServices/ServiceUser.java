@@ -99,9 +99,7 @@ public class ServiceUser extends Thread {
                 service.setObjetList(userFacade.findUsersObjectsContaints((String) service.getObjet()));
                 break;
             case "modifier":
-                User user1 = (User) service.getObjet();
-                user1.setPays(paysFacade.find(1L));
-                service.setObjet(userFacade.modifier(user1, service.getConnectedUser()));
+                service.setObjet(userFacade.modifier((User) service.getObjet(), service.getConnectedUser()));
                 break;
             case "sendPW":
                 User userr = (User) service.getObjet();

@@ -5,6 +5,7 @@
  */
 package service;
 
+import bean.Pays;
 import bean.User;
 import java.io.IOException;
 import java.util.List;
@@ -75,6 +76,8 @@ public class UserFacade extends AbstractFacade<User> {
     }
 
     public User modifier(User newUser, User oldUser) {
+        newUser.setPays(new Pays(newUser.getId()));
+        newUser.setId(oldUser.getId());
         User loadedUser = findByCreteres(newUser);
         if (loadedUser == null) {
             User userEmail = findByEmail(newUser.getEmail());
@@ -93,6 +96,7 @@ public class UserFacade extends AbstractFacade<User> {
             newUser.setPassword(oldUser.getPassword());
         }
         newUser.setId(oldUser.getId());
+        System.out.println(newUser.getPays() + "   **********");
         edit(newUser);
         return newUser;
     }

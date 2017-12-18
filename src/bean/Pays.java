@@ -32,6 +32,11 @@ public class Pays implements Serializable {
     public Pays() {
     }
 
+    public Pays(Long id) {
+        this.id = id;
+    }
+    
+
     public Pays(String nom) {
         this.nom = nom;
     }
