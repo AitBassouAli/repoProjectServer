@@ -26,18 +26,18 @@ import service.ConversationFacade;
  * @author abdel
  */
 class Service extends Thread {
-    
+
     private Socket socket;
     private TextArea console;
     Vector<Socket> lesSocket;
     ConversationFacade conversationFacade = new ConversationFacade();
-    
+
     public Service(Socket socket, Vector<Socket> lesSocket, TextArea console) {
         this.socket = socket;
         this.console = console;
         this.lesSocket = lesSocket;
     }
-    
+
     @Override
     public void run() {
         InputStream is = null;
@@ -64,10 +64,10 @@ class Service extends Thread {
             }
         }
     }
-    
+
     public void editConversationDate(Conversation conversation) {
         conversation.setDateModification(new Date());
         conversationFacade.edit(conversation);
     }
-    
+
 }

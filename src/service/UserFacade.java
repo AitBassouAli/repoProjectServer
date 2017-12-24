@@ -96,7 +96,6 @@ public class UserFacade extends AbstractFacade<User> {
             newUser.setPassword(oldUser.getPassword());
         }
         newUser.setId(oldUser.getId());
-        System.out.println(newUser.getPays() + "   **********");
         edit(newUser);
         return newUser;
     }
