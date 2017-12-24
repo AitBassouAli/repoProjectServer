@@ -101,6 +101,7 @@ public class FXMLServeurController implements Initializable {
                 chatAppAnchorPane.toFront();
                 serveur.arreter();
                 userServeur.arreter();
+                serveurTextArea.setText("");
                 enable = true;
                 arreterButton.setStyle("-fx-background-color:  #F3F3F3;-fx-border-color:  #1976d2;-fx-background-radius: 2em;-fx-border-radius: 2em;-fx-text-fill: #1976d2;");
                 demarrerButton.setStyle("-fx-background-color:   #1976d2;-fx-background-radius: 2em;-fx-border-radius: 2em;-fx-text-fill: #F3F3F3;");
